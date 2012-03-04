@@ -1,0 +1,46 @@
+Ring Hello World:
+1. Most of the processes must recieve before they send. They need to get a message before they can pass it on to the next process. However, one of the precesses needs to start the circle by sending the first message before they recieve (I made rank 0 start the circle). The MPI implementation on Janus doesn't actually care much if the program sends before recieving with a small message size, but other implementations will care.
+2. When my program is run on one processor, that process will just send a message to itself.
+
+Sample output for 5 processors:
+will@will-laptop:~/Dropbox/HPC/lab3/work$ mpiexec -n 5 ringworld
+process 0 now sending message 42 to process 1 with tag 3
+process 0 now recieving from process 4 with tag 3
+process 1 now recieving from process 0 with tag 3
+process 1 now sending message 42 to process 2 with tag 3
+process 2 now recieving from process 1 with tag 3
+process 3 now recieving from process 2 with tag 3
+process 4 now recieving from process 3 with tag 3
+process 2 now sending message 42 to process 3 with tag 3
+process 3 now sending message 42 to process 4 with tag 3
+process 4 now sending message 42 to process 0 with tag 3
+
+Simpsons:
+I have included both serial and parallel versions of my simpsons rule program. Both accept the same arguments:
+-n=#	Replace # with an integer. This argument specifies the number of intervals the program will use.
+-fx=F#	Replace # with 1, 2 or 3. This argument specifies which function it will evaluate.
+-lb=#	Replace # with a double. This argument specifies the lower bound for integration.
+-ub=#	Replace # with a double. This argument specifies the upper bound for integration.
+-verbose	Setting this flag causes the program to print out relevant information about intervals & their distribution over processes, results from each interval & from each process, and more.
+-default-bounds	Setting this flag makes it unnecessary to specify -lb and -ub arguments, and will override them if they are included. It sets the lower and upper bounds to those specified in the assignment (-pi to pi for F3).
+
+With as few a 50 intervals (only tested with a bounds range of up to 2pi; with a larger range you will need more intervals), my program's answer will agree with wolfram's answer to 4 or 5 decimal places.
+
+Sample output for a small problem:
+will@will-laptop:~/Dropbox/HPC/lab3/work$ mpiexec -n 3 simpsons_parallel -n=8 -fx=f2 -default-bounds -verbose
+Process 1 has intervals 2 to 4
+Interval 2 from 1.250000 to 1.875000 on process 1 returns -0.325539
+Interval 3 from 1.875000 to 2.500000 on process 1 returns 0.117166
+Interval 4 from 2.500000 to 3.125000 on process 1 returns 0.219100
+The sub-answer from process 1 is: 0.010727
+Process 2 has intervals 5 to 7
+Interval 5 from 3.125000 to 3.750000 on process 2 returns 0.198608
+Interval 6 from 3.750000 to 4.375000 on process 2 returns 0.211973
+Interval 7 from 4.375000 to 5.000000 on process 2 returns -0.393459
+The sub-answer from process 2 is: 0.017121
+Defaulting bounds to (0.000000,5.000000)
+Process 0 has intervals 0 to 1
+Interval 0 from 0.000000 to 0.625000 on process 0 returns 0.601106
+Interval 1 from 0.625000 to 1.250000 on process 0 returns 0.083422
+The sub-answer from process 0 is: 0.684528
+The final answer is: 0.712375

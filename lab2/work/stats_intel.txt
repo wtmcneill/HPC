@@ -1,0 +1,22 @@
+10	0
+100	0
+
+MKL ERROR: Parameter 9 was incorrect on entry to cblas_dgemm
+0	0
+
+MKL ERROR: Parameter 9 was incorrect on entry to cblas_dgemm
+0	0
+
+MKL ERROR: Parameter 9 was incorrect on entry to cblas_dgemm
+0	0
+10	0
+100	10000
+
+MKL ERROR: Parameter 9 was incorrect on entry to cblas_dgemm
+0	0
+
+MKL ERROR: Parameter 9 was incorrect on entry to cblas_dgemm
+0	0
+
+MKL ERROR: Parameter 9 was incorrect on entry to cblas_dgemm
+0	0

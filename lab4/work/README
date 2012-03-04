@@ -1,0 +1,80 @@
+Butterfly allreduce:---------------------------------------------------------------------------------------
+
+With 8 processes, high to low:
+0 1 2 3 4 5 6 7
+		0<->4, 1<->5, 2<->6, 3<->7
+0 1 2 3 4 5 6 7
+		0<->2, 1<->3, 4<->6, 5<->7
+0 1 2 3 4 5 6 7
+		0<->1, 2<->3, 4<->5, 6<->7
+0 1 2 3 4 5 6 7
+
+With 8 processes, low to high:
+0 1 2 3 4 5 6 7
+		0<->1, 2<->3, 4<->5, 6<->7
+0 1 2 3 4 5 6 7
+		0<->2, 1<->3, 4<->6, 5<->7
+0 1 2 3 4 5 6 7
+		0<->4, 1<->5, 2<->6, 3<->7
+0 1 2 3 4 5 6 7
+
+My allreduce_verify sample output (re-ordered the lines for readability & easy verification with the above );
+Hi->Lo:Rank 0 swapping with rank 4 on (mask is 4, step 1)
+Hi->Lo:Rank 0 swapping with rank 2 on (mask is 2, step 2)
+Hi->Lo:Rank 0 swapping with rank 1 on (mask is 1, step 3)
+Lo->Hi:Rank 0 swapping with rank 1 on (mask is 1, step 1)
+Lo->Hi:Rank 0 swapping with rank 2 on (mask is 2, step 2)
+Lo->Hi:Rank 0 swapping with rank 4 on (mask is 4, step 3)
+Hi->Lo:Rank 1 swapping with rank 5 on (mask is 4, step 1)
+Hi->Lo:Rank 1 swapping with rank 3 on (mask is 2, step 2)
+Hi->Lo:Rank 1 swapping with rank 0 on (mask is 1, step 3)
+Lo->Hi:Rank 1 swapping with rank 0 on (mask is 1, step 1)
+Lo->Hi:Rank 1 swapping with rank 3 on (mask is 2, step 2)
+Lo->Hi:Rank 1 swapping with rank 5 on (mask is 4, step 3)
+Hi->Lo:Rank 2 swapping with rank 6 on (mask is 4, step 1)
+Hi->Lo:Rank 2 swapping with rank 0 on (mask is 2, step 2)
+Hi->Lo:Rank 2 swapping with rank 3 on (mask is 1, step 3)
+Lo->Hi:Rank 2 swapping with rank 3 on (mask is 1, step 1)
+Lo->Hi:Rank 2 swapping with rank 0 on (mask is 2, step 2)
+Lo->Hi:Rank 2 swapping with rank 6 on (mask is 4, step 3)
+Hi->Lo:Rank 3 swapping with rank 7 on (mask is 4, step 1)
+Hi->Lo:Rank 3 swapping with rank 1 on (mask is 2, step 2)
+Hi->Lo:Rank 3 swapping with rank 2 on (mask is 1, step 3)
+Lo->Hi:Rank 3 swapping with rank 2 on (mask is 1, step 1)
+Lo->Hi:Rank 3 swapping with rank 1 on (mask is 2, step 2)
+Lo->Hi:Rank 3 swapping with rank 7 on (mask is 4, step 3)
+Hi->Lo:Rank 4 swapping with rank 0 on (mask is 4, step 1)
+Hi->Lo:Rank 4 swapping with rank 6 on (mask is 2, step 2)
+Hi->Lo:Rank 4 swapping with rank 5 on (mask is 1, step 3)
+Lo->Hi:Rank 4 swapping with rank 5 on (mask is 1, step 1)
+Lo->Hi:Rank 4 swapping with rank 6 on (mask is 2, step 2)
+Lo->Hi:Rank 4 swapping with rank 0 on (mask is 4, step 3)
+Hi->Lo:Rank 5 swapping with rank 1 on (mask is 4, step 1)
+Hi->Lo:Rank 5 swapping with rank 7 on (mask is 2, step 2)
+Hi->Lo:Rank 5 swapping with rank 4 on (mask is 1, step 3)
+Lo->Hi:Rank 5 swapping with rank 4 on (mask is 1, step 1)
+Lo->Hi:Rank 5 swapping with rank 7 on (mask is 2, step 2)
+Lo->Hi:Rank 5 swapping with rank 1 on (mask is 4, step 3)
+Hi->Lo:Rank 6 swapping with rank 2 on (mask is 4, step 1)
+Hi->Lo:Rank 6 swapping with rank 4 on (mask is 2, step 2)
+Hi->Lo:Rank 6 swapping with rank 7 on (mask is 1, step 3)
+Lo->Hi:Rank 6 swapping with rank 7 on (mask is 1, step 1)
+Lo->Hi:Rank 6 swapping with rank 4 on (mask is 2, step 2)
+Lo->Hi:Rank 6 swapping with rank 2 on (mask is 4, step 3)
+Hi->Lo:Rank 7 swapping with rank 3 on (mask is 4, step 1)
+Hi->Lo:Rank 7 swapping with rank 5 on (mask is 2, step 2)
+Hi->Lo:Rank 7 swapping with rank 6 on (mask is 1, step 3)
+Lo->Hi:Rank 7 swapping with rank 6 on (mask is 1, step 1)
+Lo->Hi:Rank 7 swapping with rank 5 on (mask is 2, step 2)
+Lo->Hi:Rank 7 swapping with rank 3 on (mask is 4, step 3)
+Hi-Lo result vector: 28.000000 28.000000 
+Lo-Hi result vector: 28.000000 28.000000 
+MPI's result vector: 28.000000 28.000000 
+
+----------------------------------------------------------------------------------------------------------
+
+For plots on performance, look at processors_v_runtime.png and size_v_runtime.png, included in the tarball
+
+Overall, the performance of my implementations compared to MPI's implementatioin a lot better than I was expecting. They were usually slower than MPI (although there are a few points where the opposite is true), but not by much. All three versions trend together and have comparable values throughout. My implementations were more likely to be faster than MPI's when run on more processors. In the size v runtime plot (all points run with 128 processes), you can see that my implementations were more frequently faster than MPI's that they were in the processors v runtime plot. And at the end of that plot, you can see my implementations are faster than MPI's only for 64 and 128 processes.
+The different bit traversals matched each other very well. Neither one is consistantly faster, but some points did show significant differences, most notably the 64-double message size as seen in the size v runtime plot. In this case, the high to low traversal ran a lot slower than either of the other two implementations.
+As you increase the message size and/or number of processors, the runtime increases dramatically, as expected.

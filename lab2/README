@@ -1,0 +1,7 @@
+When working with the examples, you will need to load the Intel and HDF5 libraries.  Type the following commands in the terminal.
+
+use .ics-2012.0.032
+
+use .hdf5-1.8.7
+
+This loads the correct path information in your LD_LIBRARY_PATH that is needed when linking libraries.

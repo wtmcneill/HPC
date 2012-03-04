@@ -1,0 +1,40 @@
+text_read	10	0
+hdf5_write	10	0
+text_read	100	0
+hdf5_write	100	0
+text_read	0	0
+hdf5_write	0	0
+text_read	0	0
+hdf5_write	0	0
+text_read	0	0
+hdf5_write	0	0
+hdf5_read	10	0
+text_write	10	0
+hdf5_read	100	0
+text_write	100	0
+hdf5_read	0	0
+text_write	0	0
+hdf5_read	0	0
+text_write	0	0
+hdf5_read	0	0
+text_write	0	0
+text_read	10	0
+hdf5_write	10	0
+text_read	100	0
+hdf5_write	100	0
+text_read	0	0
+hdf5_write	0	0
+text_read	0	0
+hdf5_write	0	0
+text_read	0	0
+hdf5_write	0	0
+hdf5_read	10	0	1000000
+text_write	10	0
+hdf5_read	100	0	1000000
+text_write	100	0
+hdf5_read	0	0	1000000
+text_write	0	0
+hdf5_read	0	0	1000000
+text_write	0	0
+hdf5_read	0	0	1000000
+text_write	0	0
