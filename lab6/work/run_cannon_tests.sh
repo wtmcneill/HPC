@@ -1,10 +1,13 @@
 #!/bin/bash
 
-cd /home/mcneillw/labs/lab6/work
+cd /home/mcneillw/HPC/lab6/work
 rm results_c/time_size.txt
 rm results_c/time_procs.txt
 
 echo Working in $(pwd)
+
+make fox
+make canon
 
 #amdahls
 for i in 1024 2048 4096
