@@ -4,6 +4,8 @@ cd /home/mcneillw/HPC/lab6/work
 rm results_c/serial.txt
 rm results_c/parallel.txt
 
+reuse .openmpi-1.4.3_gcc-4.5.2_torque-2.5.8_ib
+
 echo Working in $(pwd)
 
 make fox
