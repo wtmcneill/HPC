@@ -1,8 +1,8 @@
 #!/bin/bash
 
 cd /home/mcneillw/HPC/lab6/work
-rm results_f/time_size.txt
-rm results_f/time_procs.txt
+rm results_f/serial.txt
+rm results_f/parallel.txt
 
 echo Working in $(pwd)
 
