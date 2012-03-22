@@ -11,6 +11,9 @@ echo Working in $(pwd)
 make fox
 make canon
 
+echo "processors	size	total	parallel	serial" >results_c/serial.txt
+echo "processors	size	total	parallel	serial" >results_c/parallel.txt
+
 #amdahls
 for i in 1024 2048 4096; do
 	mpiexec -np 64 ./canons_multiply -size $i -verbose 1>> results_c/serial.txt 2>> results_c/err.log
