@@ -16,10 +16,10 @@ all:
 	make canon
 
 fox: fox_multiply.c
-	mpicc fox_multiply.c -o fox_multiply
+	mpicc -g fox_multiply.c -o fox_multiply
 
 canon: canons_multiply.c
-	mpicc canons_multiply.c -o canons_multiply
+	mpicc -g canons_multiply.c -o canons_multiply
 
 multiply: multiply.c
 	mpicc multiply.c $(INCLUDE) $(LIB_DIR) $(LIBS) -o multiply

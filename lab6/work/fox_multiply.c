@@ -83,6 +83,7 @@ int main(int argc, char* argv[]) {
 
 	local_A = Local_matrix_allocate(n_bar);//space for submatrix A in each process
 	Order(local_A) = n_bar;
+	printf("GenA");
 	Generate_matrix(local_A, &grid, n);
 	//Print_matrix("Matrix A =", local_A, &grid, n);
 

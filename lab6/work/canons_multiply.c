@@ -151,7 +151,7 @@ int main(int argc, char* argv[]) {
 	end_time_warmup = MPI_Wtime();
 	
 	begin_time_p = MPI_Wtime();
-	cannon_multiply(n,&a,&b,&c,MPI_COMM_WORLD);
+	cannon_multiply(n,(double*)&a,(double*)&b,(double*)&c,MPI_COMM_WORLD);
 	end_time = MPI_Wtime();
 	
 	if(print == 1){
