@@ -39,23 +39,24 @@ int main(int argc, char ** argv)
 	MPI_Comm_size(MPI_COMM_WORLD, &nprocs);
 	MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
 	
-	char* matrix_file="";
+	char* matrix_file_1="";
+	char* matrix_file_2="";
 	char* vector_file="";
 	char* out_file="";
 	int verb=0,partial=0;
 	
 	int i=1;
 	for(i=1;i<argc;i++){//step through arguments
-		if (strcmp(argv[i], "-m") == 0){
-			matrix_file=argv[i+1];
+		if (strcmp(argv[i], "-m1") == 0){
+			matrix_file_1=argv[i+1];
+		}else if (strcmp(argv[i], "-m2") == 0){
+			matrix_file_2=argv[i+1];
 		}else if (strcmp(argv[i], "-v") == 0){
 			vector_file=argv[i+1];
 		}else if (strcmp(argv[i], "-o") == 0){
 			out_file=argv[i+1];
-		}else if (strcmp(argv[i], "-verbose") == 0){
+		}else if (strcmp(argv[i], "--verbose") == 0){
 			verb=1;
-		}else if (strcmp(argv[i], "-partial") == 0){
-			partial=1;
 		}
 	}
 	
@@ -81,28 +82,7 @@ int main(int argc, char ** argv)
 		//print_row(&vector,size);
 	}
 	
-	//scatter the matrix
-	MPI_Scatter(matrix,elements_per_process,MPI_DOUBLE,my_rows,elements_per_process,MPI_DOUBLE,root,MPI_COMM_WORLD);
-	//broadcast the vector
-	MPI_Bcast(vector,size,MPI_DOUBLE,root,MPI_COMM_WORLD);
 	
-	/*if(myrank==root){
-		printf("Proc %i got matrix data:\n",myrank);
-		print_matrix(my_rows,rows_per_process,size);
-		
-		printf("Proc %i got vector data: ",myrank);
-		print_row(vector,size);
-	}*/
-	
-	do_multiply(my_rows,vector,my_out,rows_per_process,elements_per_process);
-	
-	/*if(myrank==root){
-		printf("Proc %i multiplied & got:\n",myrank);
-		print_matrix(my_out,rows_per_process,size);
-	}*/
-	
-	//gather
-	MPI_Gather(my_out,elements_per_process,MPI_DOUBLE,output,elements_per_process,MPI_DOUBLE,root,MPI_COMM_WORLD);
 	
 	if(myrank==root){
 		printf("Final matrix:\n");
