@@ -10,8 +10,8 @@ LIB_DIR=$(HDF5_LIB_DIR)
 LIBS=$(HDF5_LIBS)
 
 all:
-	make multiply
-	make noIO_multiply
+	#make multiply
+	#make noIO_multiply
 	make fox
 	make canon
 
@@ -28,5 +28,7 @@ noIO_multiply: noIO_multiply.c
 	mpicc noIO_multiply.c -o noIO_multiply
 
 clean:
-	rm multiply
-	rm noIO_multiply
+	rm -f multiply
+	rm -f noIO_multiply
+	rm -f fox_multiply
+	rm -f canons_multiply
