@@ -32,73 +32,66 @@ void print_matrix(double* mat,int n_rows,int row_length){
 	}
 }
 
-cannon_multiply(int n, double *a, double *b, double *c, MPI_Comm comm){
-	int i, j, nlocal; 
-	double *a_buffers[2], *b_buffers[2]; 
+cannon_multiply(int n, double *a, double *b, double *c,MPI_Comm comm){
+	int i; 
+	int nlocal; 
 	int nprocs, dims[2], periods[2]; 
 	int myrank, my2drank, mycoords[2]; 
 	int uprank, downrank, leftrank, rightrank, coords[2]; 
-	int shiftsource, shiftdest; 
+	int shiftsource, shiftdest;
 	MPI_Status status; 
 	MPI_Comm comm_2d; 
-	MPI_Request reqs[4]; 
-
+ 
+	/* Get the communicator related information */ 
 	MPI_Comm_size(comm, &nprocs); 
-	MPI_Comm_rank(comm, &myrank);
-
-	dims[0] = dims[1] = sqrt(nprocs); //Set up the Cartesian topology
-
-	periods[0] = periods[1] = 1; //Set the periods for wraparound connections
-
-	MPI_Cart_create(comm, 2, dims, periods, 1, &comm_2d); //Create the Cartesian topology, with rank reordering
-
-	MPI_Comm_rank(comm_2d, &my2drank); //Get the rank and coordinates with respect to the new topology
+	MPI_Comm_rank(comm, &myrank); 
+ 
+	/* Set up the Cartesian topology */ 
+	dims[0] = dims[1] = sqrt(nprocs); 
+ 
+	/* Set the periods for wraparound connections */ 
+	periods[0] = periods[1] = 1; 
+ 
+	/* Create the Cartesian topology, with rank reordering */ 
+	MPI_Cart_create(comm, 2, dims, periods, 1, &comm_2d); 
+ 
+	/* Get the rank and coordinates with respect to the new topology */ 
+	MPI_Comm_rank(comm_2d, &my2drank); 
 	MPI_Cart_coords(comm_2d, my2drank, 2, mycoords); 
-
-	MPI_Cart_shift(comm_2d, 0, -1, &rightrank, &leftrank); //Compute ranks of the up and left shifts
+ 
+	/* Compute ranks of the up and left shifts */ 
+	MPI_Cart_shift(comm_2d, 0, -1, &rightrank, &leftrank); 
 	MPI_Cart_shift(comm_2d, 1, -1, &downrank, &uprank); 
-
-	nlocal = n/dims[0]; //Determine the dimension of the local matrix block
-
-	a_buffers[0] = a; //Setup the a_buffers and b_buffers arrays
-	a_buffers[1] = (double *)malloc(nlocal*nlocal*sizeof(double)); 
-	b_buffers[0] = b; 
-	b_buffers[1] = (double *)malloc(nlocal*nlocal*sizeof(double)); 
-
-	//initial matrix alignment. for A then B
+ 
+	/* Determine the dimension of the local matrix block */ 
+	nlocal = n/dims[0]; 
+ 
+	/* Perform the initial matrix alignment. First for A and then for B */ 
 	MPI_Cart_shift(comm_2d, 0, -mycoords[0], &shiftsource, &shiftdest); 
-	MPI_Sendrecv_replace(a_buffers[0], nlocal*nlocal, MPI_DOUBLE, shiftdest, 1, shiftsource, 1, comm_2d, &status); 
-
+	MPI_Sendrecv_replace(a, nlocal*nlocal, MPI_DOUBLE, shiftdest, 1, shiftsource, 1, comm_2d, &status); 
+ 
 	MPI_Cart_shift(comm_2d, 1, -mycoords[1], &shiftsource, &shiftdest); 
-	MPI_Sendrecv_replace(b_buffers[0], nlocal*nlocal, MPI_DOUBLE, shiftdest, 1, shiftsource, 1, comm_2d, &status); 
-	
-	if(myrank == 0){printf("starting main loop, up to %i\n",dims[0]);}
-	for (i=0; i<dims[0]; i++) { //main computing loop
-		
-		MPI_Isend(a_buffers[i%2], nlocal*nlocal, MPI_DOUBLE, leftrank, 1, comm_2d, &reqs[0]); 
-		MPI_Isend(b_buffers[i%2], nlocal*nlocal, MPI_DOUBLE, uprank, 1, comm_2d, &reqs[1]); 
-		MPI_Irecv(a_buffers[(i+1)%2], nlocal*nlocal, MPI_DOUBLE, rightrank, 1, comm_2d, &reqs[2]); 
-		MPI_Irecv(b_buffers[(i+1)%2], nlocal*nlocal, MPI_DOUBLE, downrank, 1, comm_2d, &reqs[3]); 
-
-		serial_multiply(nlocal, a_buffers[i%2], b_buffers[i%2], c); //c=c+a*b
-
-		if(myrank == 0){printf("waiting for communications on iteration %i\n",i);}
-		for (j=0; j<4; j++){MPI_Wait(&reqs[j], &status);}
+	MPI_Sendrecv_replace(b, nlocal*nlocal, MPI_DOUBLE, shiftdest, 1, shiftsource, 1, comm_2d, &status); 
+ 
+	/* Get into the main computation loop */ 
+	for (i=0; i<dims[0]; i++) { 
+		serial_multiply(nlocal, a, b, c); /*c=c+a*b*/ 
+ 
+		/* Shift matrix a left by one */ 
+		MPI_Sendrecv_replace(a, nlocal*nlocal, MPI_DOUBLE,leftrank, 1, rightrank, 1, comm_2d, &status); 
+ 
+		/* Shift matrix b up by one */ 
+		MPI_Sendrecv_replace(b, nlocal*nlocal, MPI_DOUBLE,uprank, 1, downrank, 1, comm_2d, &status); 
 	} 
-	
-	if(myrank == 0){printf("done loop, restoring distributions\n");}
-	
-	//restore original distribution of a & b 
+ 
+	/* Restore the original distribution of a and b */ 
 	MPI_Cart_shift(comm_2d, 0, +mycoords[0], &shiftsource, &shiftdest); 
-	MPI_Sendrecv_replace(a_buffers[i%2], nlocal*nlocal, MPI_DOUBLE, shiftdest, 1, shiftsource, 1, comm_2d, &status); 
-
+	MPI_Sendrecv_replace(a, nlocal*nlocal, MPI_DOUBLE,shiftdest, 1, shiftsource, 1, comm_2d, &status); 
+ 
 	MPI_Cart_shift(comm_2d, 1, +mycoords[1], &shiftsource, &shiftdest); 
-	MPI_Sendrecv_replace(b_buffers[i%2], nlocal*nlocal, MPI_DOUBLE, shiftdest, 1, shiftsource, 1, comm_2d, &status); 
-
-	//cleanup
-	MPI_Comm_free(&comm_2d);
-	free(a_buffers[1]); 
-	free(b_buffers[1]); 
+	MPI_Sendrecv_replace(b, nlocal*nlocal, MPI_DOUBLE,shiftdest, 1, shiftsource, 1, comm_2d, &status); 
+ 
+	MPI_Comm_free(&comm_2d); /* Free up communicator */ 
 }
 
 void fill(double* mat,int n,double val){
@@ -117,11 +110,13 @@ void fill_random(double* mat,int n){
 
 int main(int argc, char* argv[]) {
 	int nprocs,myrank;
-	int verbose=0;
+	int verbose=0,print=0;
 	int i;
 	int n=0;//problem size
+	double begin_time_p, begin_time_p_warmup, begin_time_t, end_time, end_time_warmup, serial_end, interval_p, interval_t, interval_s;
 		
 	MPI_Init(&argc, &argv);
+	begin_time_t = MPI_Wtime();//start total time timer
 	MPI_Comm_size(MPI_COMM_WORLD, &nprocs); 
 	MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
 	
@@ -130,6 +125,8 @@ int main(int argc, char* argv[]) {
 		for (i = 1; i < argc; i++){ //Skip argv[0] (program name)
 			if (strcmp(argv[i], "-verbose") == 0){
 				verbose = 1;
+			}else if(strcmp(argv[i], "-print") == 0){
+				print=1;
 			}else if(strcmp(argv[i], "-size") == 0){
 				if(i+1<argc){//make sure there is another argument there
 					n=atoi(argv[i+1]);
@@ -146,27 +143,45 @@ int main(int argc, char* argv[]) {
 	double b[n*n];
 	double c[n*n];
 	
-	fill_random(a,n);//fill in starting values
-	fill_random(b,n);
-	fill(c,n,0);
-	
 	if(myrank == 0){
+		fill_random(a,n);//fill in starting values
+		fill_random(b,n);
+	}fill(c,n,0);
+	
+	MPI_Bcast(&a, n*n, MPI_DOUBLE, 0, MPI_COMM_WORLD);//send matricies to all processes
+	MPI_Bcast(&b, n*n, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+	//MPI_Bcast(&c, n*n, MPI_DOUBLE, 0, MPI_COMM_WORLD);//dont send c because all procs can fill with zeroes
+	
+	if(print == 1){
 		printf("A:\n");
 		print_matrix(a,n,n);
 		printf("B:\n");
 		print_matrix(b,n,n);
 	}
 	
-	if(myrank == 0){printf("starting cannons\n");}
-	cannon_multiply(n,&a,&b,&c,MPI_COMM_WORLD);
-	if(myrank == 0){printf("done cannons\n");}
+	interval_s=MPI_Wtime()-begin_time_t;//serial portion
 	
-	if(myrank == 0){
+	begin_time_p_warmup = MPI_Wtime();//run once to "warm up" the timer
+	//dont run it here, bc any MPI calls after running it hang (why?)
+	end_time_warmup = MPI_Wtime();
+	
+	begin_time_p = MPI_Wtime();
+	cannon_multiply(n,&a,&b,&c,MPI_COMM_WORLD);
+	end_time = MPI_Wtime();
+	
+	if(print == 1){
 		printf("C:\n");
 		print_matrix(c,n,n);
 	}
 	
-	MPI_Finalize();
-	if(myrank == 0){printf("finalized\n");}
+	interval_p = end_time - begin_time_p;
+	interval_t = end_time - begin_time_t - (end_time_warmup-begin_time_p_warmup);//subtract the time taken for warmup
+	if(verbose == 1){
+		printf("%i %i %f %f %f\n",nprocs,n,interval_t,interval_p,interval_s);
+	}
+	
+	MPI_Abort(MPI_COMM_WORLD,0);//there might be an unfinished transfer somewhere, so barrier & finalize hang
+	//MPI_Barrier(MPI_COMM_WORLD);
+	//MPI_Finalize();//hangs for some reason!
+	//if(myrank == 0){printf("finalized\n");}
 }
-
