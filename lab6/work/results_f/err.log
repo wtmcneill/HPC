@@ -1,0 +1,233 @@
+[will-laptop:08196] *** Process received signal ***
+[will-laptop:08196] Signal: Segmentation fault (11)
+[will-laptop:08196] Signal code: Address not mapped (1)
+[will-laptop:08196] Failing at address: 0x24ce000
+[will-laptop:08198] *** Process received signal ***
+[will-laptop:08198] Signal: Segmentation fault (11)
+[will-laptop:08198] Signal code: Address not mapped (1)
+[will-laptop:08198] Failing at address: 0x19d6000
+[will-laptop:08194] *** Process received signal ***
+[will-laptop:08194] Signal: Segmentation fault (11)
+[will-laptop:08194] Signal code: Address not mapped (1)
+[will-laptop:08194] Failing at address: 0x1a2b000
+[will-laptop:08192] *** Process received signal ***
+[will-laptop:08192] Signal: Segmentation fault (11)
+[will-laptop:08192] Signal code: Address not mapped (1)
+[will-laptop:08192] Failing at address: 0x128d000
+[will-laptop:08193] *** Process received signal ***
+[will-laptop:08193] Signal: Segmentation fault (11)
+[will-laptop:08193] Signal code: Address not mapped (1)
+[will-laptop:08193] Failing at address: 0xc87000
+[will-laptop:08195] *** Process received signal ***
+[will-laptop:08195] Signal: Segmentation fault (11)
+[will-laptop:08195] Signal code: Address not mapped (1)
+[will-laptop:08195] Failing at address: 0xb4d000
+[will-laptop:08197] *** Process received signal ***
+[will-laptop:08197] Signal: Segmentation fault (11)
+[will-laptop:08197] Signal code: Address not mapped (1)
+[will-laptop:08197] Failing at address: 0x1912000
+[will-laptop:08196] [ 0] /lib/libpthread.so.0(+0xf8f0) [0x7fa228d718f0]
+[will-laptop:08196] [ 1] /lib/libc.so.6(memcpy+0x15b) [0x7fa228a6603b]
+[will-laptop:08196] [ 2] /usr/lib/libmpi.so.0(ompi_convertor_unpack+0x121) [0x7fa229d298e1]
+[will-laptop:08196] [ 3] /usr/lib/openmpi/lib/openmpi/mca_pml_ob1.so(+0x8a26) [0x7fa225d47a26]
+[will-laptop:08196] [ 4] /usr/lib/openmpi/lib/openmpi/mca_btl_sm.so(+0x4498) [0x7fa224ee7498]
+[will-laptop:08196] [ 5] /usr/lib/libopen-pal.so.0(opal_progress+0x5a) [0x7fa22983632a]
+[will-laptop:08196] [ 6] /usr/lib/openmpi/lib/openmpi/mca_pml_ob1.so(+0x5585) [0x7fa225d44585]
+[will-laptop:08196] [ 7] /usr/lib/libmpi.so.0(MPI_Recv+0x159) [0x7fa229d411c9]
+[will-laptop:08196] [ 8] ./fox_multiply(Generate_matrix+0x21b) [0x401ca5]
+[will-laptop:08196] [ 9] ./fox_multiply(main+0x206) [0x40159a]
+[will-laptop:08196] [10] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fa2289fdc4d]
+[will-laptop:08196] [11] ./fox_multiply() [0x4012d9]
+[will-laptop:08196] *** End of error message ***
+--------------------------------------------------------------------------
+mpiexec noticed that process rank 5 with PID 8196 on node will-laptop exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+[will-laptop:08257] *** Process received signal ***
+[will-laptop:08257] Signal: Segmentation fault (11)
+[will-laptop:08257] Signal code: Address not mapped (1)
+[will-laptop:08257] Failing at address: 0x1e29000
+[will-laptop:08257] [ 0] /lib/libpthread.so.0(+0xf8f0) [0x7f2bacd498f0]
+[will-laptop:08257] [ 1] ./fox_multiply(Generate_matrix+0xf5) [0x401b7f]
+[will-laptop:08257] [ 2] ./fox_multiply(main+0x206) [0x40159a]
+[will-laptop:08257] [ 3] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f2bac9d5c4d]
+[will-laptop:08257] [ 4] ./fox_multiply() [0x4012d9]
+[will-laptop:08257] *** End of error message ***
+--------------------------------------------------------------------------
+mpiexec noticed that process rank 0 with PID 8257 on node will-laptop exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+[will-laptop:08259] *** Process received signal ***
+[will-laptop:08259] Signal: Segmentation fault (11)
+[will-laptop:08259] Signal code: Address not mapped (1)
+[will-laptop:08259] Failing at address: 0x12a4000
+[will-laptop:08259] [ 0] /lib/libpthread.so.0(+0xf8f0) [0x7fe71f5e28f0]
+[will-laptop:08259] [ 1] ./fox_multiply(Generate_matrix+0xf5) [0x401b7f]
+[will-laptop:08259] [ 2] ./fox_multiply(main+0x206) [0x40159a]
+[will-laptop:08259] [ 3] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fe71f26ec4d]
+[will-laptop:08259] [ 4] ./fox_multiply() [0x4012d9]
+[will-laptop:08259] *** End of error message ***
+--------------------------------------------------------------------------
+mpiexec noticed that process rank 0 with PID 8259 on node will-laptop exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+[will-laptop:08261] *** Process received signal ***
+[will-laptop:08261] Signal: Segmentation fault (11)
+[will-laptop:08261] Signal code: Address not mapped (1)
+[will-laptop:08261] Failing at address: 0x1257000
+[will-laptop:08261] [ 0] /lib/libpthread.so.0(+0xf8f0) [0x7f0e91d518f0]
+[will-laptop:08261] [ 1] ./fox_multiply(Generate_matrix+0xf5) [0x401b7f]
+[will-laptop:08261] [ 2] ./fox_multiply(main+0x206) [0x40159a]
+[will-laptop:08261] [ 3] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f0e919ddc4d]
+[will-laptop:08261] [ 4] ./fox_multiply() [0x4012d9]
+[will-laptop:08261] *** End of error message ***
+--------------------------------------------------------------------------
+mpiexec noticed that process rank 0 with PID 8261 on node will-laptop exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+[will-laptop:08263] *** Process received signal ***
+[will-laptop:08263] Signal: Segmentation fault (11)
+[will-laptop:08263] Signal code: Address not mapped (1)
+[will-laptop:08263] Failing at address: 0xf2e000
+[will-laptop:08263] [ 0] /lib/libpthread.so.0(+0xf8f0) [0x7f8eacafa8f0]
+[will-laptop:08263] [ 1] ./fox_multiply(Generate_matrix+0xf5) [0x401b7f]
+[will-laptop:08263] [ 2] ./fox_multiply(main+0x206) [0x40159a]
+[will-laptop:08263] [ 3] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f8eac786c4d]
+[will-laptop:08263] [ 4] ./fox_multiply() [0x4012d9]
+[will-laptop:08263] *** End of error message ***
+--------------------------------------------------------------------------
+mpiexec noticed that process rank 0 with PID 8263 on node will-laptop exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+[will-laptop:08265] *** Process received signal ***
+[will-laptop:08265] Signal: Segmentation fault (11)
+[will-laptop:08265] Signal code:  (128)
+[will-laptop:08265] Failing at address: (nil)
+[will-laptop:08265] [ 0] /lib/libpthread.so.0(+0xf8f0) [0x7f0cf1b348f0]
+[will-laptop:08265] [ 1] /usr/lib/openmpi/lib/openmpi/mca_pml_ob1.so(+0xffb6) [0x7f0ceeb11fb6]
+[will-laptop:08265] [ 2] /usr/lib/openmpi/lib/openmpi/mca_pml_ob1.so(+0x5f1d) [0x7f0ceeb07f1d]
+[will-laptop:08265] [ 3] /usr/lib/libmpi.so.0(PMPI_Send+0x184) [0x7f0cf2b06724]
+[will-laptop:08265] [ 4] ./fox_multiply(Generate_matrix+0x191) [0x401c1b]
+[will-laptop:08265] [ 5] ./fox_multiply(main+0x206) [0x40159a]
+[will-laptop:08265] [ 6] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f0cf17c0c4d]
+[will-laptop:08265] [ 7] ./fox_multiply() [0x4012d9]
+[will-laptop:08265] *** End of error message ***
+--------------------------------------------------------------------------
+mpiexec noticed that process rank 0 with PID 8265 on node will-laptop exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+[will-laptop:08270] *** Process received signal ***
+[will-laptop:08270] Signal: Segmentation fault (11)
+[will-laptop:08270] Signal code: Address not mapped (1)
+[will-laptop:08270] Failing at address: 0x27e4000
+[will-laptop:08270] [ 0] /lib/libpthread.so.0(+0xf8f0) [0x7f98e6f898f0]
+[will-laptop:08270] [ 1] ./fox_multiply(Generate_matrix+0xf5) [0x401b7f]
+[will-laptop:08270] [ 2] ./fox_multiply(main+0x206) [0x40159a]
+[will-laptop:08270] [ 3] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f98e6c15c4d]
+[will-laptop:08270] [ 4] ./fox_multiply() [0x4012d9]
+[will-laptop:08270] *** End of error message ***
+--------------------------------------------------------------------------
+mpiexec noticed that process rank 0 with PID 8270 on node will-laptop exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+[will-laptop:08275] *** Process received signal ***
+[will-laptop:08275] Signal: Segmentation fault (11)
+[will-laptop:08275] Signal code: Address not mapped (1)
+[will-laptop:08275] Failing at address: 0x195a000
+[will-laptop:08275] [ 0] /lib/libpthread.so.0(+0xf8f0) [0x7fb007cce8f0]
+[will-laptop:08275] [ 1] ./fox_multiply(Generate_matrix+0xf5) [0x401b7f]
+[will-laptop:08275] [ 2] ./fox_multiply(main+0x206) [0x40159a]
+[will-laptop:08275] [ 3] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fb00795ac4d]
+[will-laptop:08275] [ 4] ./fox_multiply() [0x4012d9]
+[will-laptop:08275] *** End of error message ***
+--------------------------------------------------------------------------
+mpiexec noticed that process rank 0 with PID 8275 on node will-laptop exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+[will-laptop:08280] *** Process received signal ***
+[will-laptop:08280] Signal: Segmentation fault (11)
+[will-laptop:08280] Signal code: Address not mapped (1)
+[will-laptop:08280] Failing at address: 0xf1d000
+[will-laptop:08280] [ 0] /lib/libpthread.so.0(+0xf8f0) [0x7fbf4a3d48f0]
+[will-laptop:08280] [ 1] ./fox_multiply(Generate_matrix+0xf5) [0x401b7f]
+[will-laptop:08280] [ 2] ./fox_multiply(main+0x206) [0x40159a]
+[will-laptop:08280] [ 3] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fbf4a060c4d]
+[will-laptop:08280] [ 4] ./fox_multiply() [0x4012d9]
+[will-laptop:08280] *** End of error message ***
+--------------------------------------------------------------------------
+mpiexec noticed that process rank 0 with PID 8280 on node will-laptop exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+[will-laptop:08302] *** Process received signal ***
+[will-laptop:08302] Signal: Segmentation fault (11)
+[will-laptop:08302] Signal code:  (128)
+[will-laptop:08302] Failing at address: (nil)
+[will-laptop:08302] [ 0] /lib/libpthread.so.0(+0xf8f0) [0x7f5e85eab8f0]
+[will-laptop:08302] [ 1] /usr/lib/openmpi/lib/openmpi/mca_pml_ob1.so(+0xffb6) [0x7f5e82e88fb6]
+[will-laptop:08302] [ 2] /usr/lib/openmpi/lib/openmpi/mca_pml_ob1.so(+0x5f1d) [0x7f5e82e7ef1d]
+[will-laptop:08302] [ 3] /usr/lib/libmpi.so.0(PMPI_Send+0x184) [0x7f5e86e7d724]
+[will-laptop:08302] [ 4] ./fox_multiply(Generate_matrix+0x191) [0x401c1b]
+[will-laptop:08302] [ 5] ./fox_multiply(main+0x206) [0x40159a]
+[will-laptop:08302] [ 6] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f5e85b37c4d]
+[will-laptop:08302] [ 7] ./fox_multiply() [0x4012d9]
+[will-laptop:08302] *** End of error message ***
+--------------------------------------------------------------------------
+mpiexec noticed that process rank 0 with PID 8302 on node will-laptop exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+[will-laptop:08319] *** Process received signal ***
+[will-laptop:08319] Signal: Segmentation fault (11)
+[will-laptop:08319] Signal code: Address not mapped (1)
+[will-laptop:08319] Failing at address: 0x1baf000
+[will-laptop:08319] [ 0] /lib/libpthread.so.0(+0xf8f0) [0x7fd33b0338f0]
+[will-laptop:08319] [ 1] ./fox_multiply(Generate_matrix+0xf5) [0x401b7f]
+[will-laptop:08319] [ 2] ./fox_multiply(main+0x206) [0x40159a]
+[will-laptop:08319] [ 3] /lib/libc.so.6(__libc_start_main+0xfd) [0x7fd33acbfc4d]
+[will-laptop:08319] [ 4] ./fox_multiply() [0x4012d9]
+[will-laptop:08319] *** End of error message ***
+--------------------------------------------------------------------------
+mpiexec noticed that process rank 0 with PID 8319 on node will-laptop exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+[will-laptop:08336] *** Process received signal ***
+[will-laptop:08336] Signal: Segmentation fault (11)
+[will-laptop:08336] Signal code: Address not mapped (1)
+[will-laptop:08336] Failing at address: 0x1055000
+[will-laptop:08336] [ 0] /lib/libpthread.so.0(+0xf8f0) [0x7f3a458b48f0]
+[will-laptop:08336] [ 1] ./fox_multiply(Generate_matrix+0xf5) [0x401b7f]
+[will-laptop:08336] [ 2] ./fox_multiply(main+0x206) [0x40159a]
+[will-laptop:08336] [ 3] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f3a45540c4d]
+[will-laptop:08336] [ 4] ./fox_multiply() [0x4012d9]
+[will-laptop:08336] *** End of error message ***
+--------------------------------------------------------------------------
+mpiexec noticed that process rank 0 with PID 8336 on node will-laptop exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+mpiexec: killing job...
+
+--------------------------------------------------------------------------
+mpiexec was unable to cleanly terminate the daemons on the nodes shown
+below. Additional manual cleanup may be required - please refer to
+the "orte-clean" tool for assistance.
+--------------------------------------------------------------------------
+[will-laptop:08490] *** Process received signal ***
+[will-laptop:08490] Signal: Segmentation fault (11)
+[will-laptop:08490] Signal code: Address not mapped (1)
+[will-laptop:08490] Failing at address: 0x11c1000
+[will-laptop:08490] [ 0] /lib/libpthread.so.0(+0xf8f0) [0x7f86569a28f0]
+[will-laptop:08490] [ 1] /lib/libc.so.6(memcpy+0x15b) [0x7f865669703b]
+[will-laptop:08490] [ 2] /usr/lib/libmpi.so.0(ompi_convertor_unpack+0x121) [0x7f865795a8e1]
+[will-laptop:08490] [ 3] /usr/lib/openmpi/lib/openmpi/mca_pml_ob1.so(+0x8a26) [0x7f8653978a26]
+[will-laptop:08490] [ 4] /usr/lib/openmpi/lib/openmpi/mca_btl_sm.so(+0x4498) [0x7f8652b18498]
+[will-laptop:08490] [ 5] /usr/lib/libopen-pal.so.0(opal_progress+0x5a) [0x7f865746732a]
+[will-laptop:08490] [ 6] /usr/lib/openmpi/lib/openmpi/mca_pml_ob1.so(+0x5585) [0x7f8653975585]
+[will-laptop:08490] [ 7] /usr/lib/libmpi.so.0(MPI_Recv+0x159) [0x7f86579721c9]
+[will-laptop:08490] [ 8] ./fox_multiply(Generate_matrix+0x21b) [0x401ca5]
+[will-laptop:08490] [ 9] ./fox_multiply(main+0x206) [0x40159a]
+[will-laptop:08490] [10] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f865662ec4d]
+[will-laptop:08490] [11] ./fox_multiply() [0x4012d9]
+[will-laptop:08490] *** End of error message ***
+--------------------------------------------------------------------------
+mpiexec noticed that process rank 7 with PID 8490 on node will-laptop exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+[will-laptop:08548] *** Process received signal ***
+[will-laptop:08548] Signal: Segmentation fault (11)
+[will-laptop:08548] Signal code: Address not mapped (1)
+[will-laptop:08548] Failing at address: 0x1462000
+[will-laptop:08548] [ 0] /lib/libpthread.so.0(+0xf8f0) [0x7f19d85c88f0]
+[will-laptop:08548] [ 1] ./fox_multiply(Generate_matrix+0xf5) [0x401b7f]
+[will-laptop:08548] [ 2] ./fox_multiply(main+0x206) [0x40159a]
+[will-laptop:08548] [ 3] /lib/libc.so.6(__libc_start_main+0xfd) [0x7f19d8254c4d]
+[will-laptop:08548] [ 4] ./fox_multiply() [0x4012d9]
+[will-laptop:08548] *** End of error message ***
+--------------------------------------------------------------------------
+mpiexec noticed that process rank 0 with PID 8548 on node will-laptop exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------

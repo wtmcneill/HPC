@@ -21,14 +21,14 @@ fox: fox_multiply.c
 canon: canons_multiply.c
 	mpicc -g canons_multiply.c -o canons_multiply
 
-multiply: multiply.c
-	mpicc multiply.c $(INCLUDE) $(LIB_DIR) $(LIBS) -o multiply
+#multiply: multiply.c
+#	mpicc multiply.c $(INCLUDE) $(LIB_DIR) $(LIBS) -o multiply
 
-noIO_multiply: noIO_multiply.c
-	mpicc noIO_multiply.c -o noIO_multiply
+#noIO_multiply: noIO_multiply.c
+#	mpicc noIO_multiply.c -o noIO_multiply
 
 clean:
-	rm -f multiply
-	rm -f noIO_multiply
+	#rm -f multiply
+	#rm -f noIO_multiply
 	rm -f fox_multiply
 	rm -f canons_multiply
