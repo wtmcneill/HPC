@@ -1,5 +1,5 @@
-CC      =  g++
-OPT 	  =  -fopenmp
+CC      =  icc
+OPT 	  =  -openmp
 
 OPTIONS =  $(OPT)
 EXEC   	= omp_MatVecMultiply
