@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <omp.h>
 
 
 #define APP_NAME ("omp_MatVecMultiply")                                       //.exe name 

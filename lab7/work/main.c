@@ -23,6 +23,7 @@ int main(int argc, char *argv[])
   int err = 0;
   int i, j;
   double *vecA, *matB, *vecC;
+  double s_time,e_time;
     
   // Get cmndln args exit if error occurs
   if((err = getArgs(argc, argv)))
@@ -57,7 +58,9 @@ int main(int argc, char *argv[])
     vecC[i] = RNDRANGE(10.0);
 
   // Perform the matrix-vector multiply
+  s_time=omp_get_wtime();
   matvectMultiply(vecA, matB, vecC);
+  e_time=omp_get_wtime();
 
   // If verbose then display the matrices
   if(Args.verbose)
@@ -65,6 +68,7 @@ int main(int argc, char *argv[])
     outputMat("Matrix B:", matB);
     outputVec("Vector C:", vecC);
     outputVec("Resultant Vector A:", vecA);
+    printf("Multiply time: %d",e_time-s_time);
   }
 
   // Free memory 
