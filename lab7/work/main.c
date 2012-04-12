@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
     //outputMat("Matrix B:", matB);
     //outputVec("Vector C:", vecC);
     //outputVec("Resultant Vector A:", vecA);
-    printf("Multiply time: %f",e_time-s_time);
+    printf("Multiply time: %f %d\n",e_time-s_time,omp_get_max_threads());
   }
 
   // Free memory 

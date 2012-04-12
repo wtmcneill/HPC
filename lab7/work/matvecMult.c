@@ -35,10 +35,10 @@ void matvectMultiply(double* vecA, double* matB, double* vecC)
 	#pragma omp parallel for private(i,j)
    for(i=0; i < Args.m; i++)
   {
-    #pragma omp master
+    /*#pragma omp master
     {
         printf("%d\n", omp_get_num_threads( ));
-    }
+    }*/
     
     // pre-init vecA
     vecA[i] = 0.0;  
