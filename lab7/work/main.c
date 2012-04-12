@@ -65,9 +65,9 @@ int main(int argc, char *argv[])
   // If verbose then display the matrices
   if(Args.verbose)
   {
-    outputMat("Matrix B:", matB);
-    outputVec("Vector C:", vecC);
-    outputVec("Resultant Vector A:", vecA);
+    //outputMat("Matrix B:", matB);
+    //outputVec("Vector C:", vecC);
+    //outputVec("Resultant Vector A:", vecA);
     printf("Multiply time: %f",e_time-s_time);
   }
 
