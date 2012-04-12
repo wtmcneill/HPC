@@ -32,7 +32,7 @@ void matvectMultiply(double* vecA, double* matB, double* vecC)
 {
   int i,j;
 
-	#pragma omp parallel for private(i,j)
+	//#pragma omp parallel for private(i,j)
    for(i=0; i < Args.m; i++)
   {
     /*#pragma omp master
