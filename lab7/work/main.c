@@ -65,11 +65,12 @@ int main(int argc, char *argv[])
   // If verbose then display the matrices
   if(Args.verbose)
   {
-    //outputMat("Matrix B:", matB);
-    //outputVec("Vector C:", vecC);
-    //outputVec("Resultant Vector A:", vecA);
-    printf("Multiply time: %f %d\n",e_time-s_time,omp_get_max_threads());
+    outputMat("Matrix B:", matB);
+    outputVec("Vector C:", vecC);
+    outputVec("Resultant Vector A:", vecA);
   }
+  
+  printf("%d %f\n",omp_get_max_threads(),e_time-s_time);
 
   // Free memory 
   if(vecA) free(vecA);
