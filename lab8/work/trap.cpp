@@ -37,8 +37,7 @@ double trapezoidal(const double &a, const double &b, const  unsigned long int &n
 	
 	unsigned long int i;
 	#pragma omp parallel for reduction(+:integral) private(i)
-	for(i=1; i<local_n-1; ++i)
-	{
+	for(i=1; i<local_n-1; ++i){
 		double x = start_n +i*step;
 		integral += f(x);
 	}
