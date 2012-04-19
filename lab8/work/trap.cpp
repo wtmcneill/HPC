@@ -36,11 +36,11 @@ double trapezoidal(const double &a, const double &b, const  unsigned long int &n
 	double integral = (f(start_n) + f(start_n +local_n*step - step));
 	
 	unsigned long int i;
-	#pragma omp parallel for private(i) reduction(+:integral)
+	#pragma omp parallel for reduction(+:integral) private(i)
 	for(i=1; i<local_n-1; ++i)
 	{
 		double x = start_n +i*step;
-		integral = f(x);
+		integral += f(x);
 	}
 	integral *= step;
 
