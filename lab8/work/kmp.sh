@@ -5,7 +5,7 @@ cd /home/mcneillw/HPC/lab8/work
 . /curc/tools/utils/dkinit #so we can use the "reuse" command
 reuse ICS
 
-icc -openmp stream_kmp.c -o stream_kmp_affinity
+icc -openmp stream_kmp.c -o stream_kmp
 
 export OMP_NUM_THREADS=6
 export KMP_AFFINITY=verbose,compact
