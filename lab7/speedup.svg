@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20001102//EN"
+   "http://www.w3.org/TR/2000/CR-SVG-20001102/DTD/svg-20001102.dtd">
+<svg  width="630" height="434" style="stroke-linecap:round">
+<g transform="scale(0.1)" style="font-family:Helvetica">
+   <rect x="0" y="0" width="6298" height="4330" style="fill:white; stroke:rgb(224,224,224); stroke-width:1"/>
+   <rect x="984" y="394" width="4527" height="3148" style="fill:white; stroke:white; stroke-width:1"/>
+   <line x1="984" y1="3543" x2="5512" y2="3543" style="stroke:black; stroke-width:8"/>
+   <text x="3248" y="3972" dy="0" style="font-family:Helvetica; fill:black; stroke:black; 
+      font-size:142; text-anchor:middle ">Threads</text>
+      <line x1="984" y1="3543" x2="984" y2="3621" style="stroke:black; stroke-width:8"/>
+      <text x="984" y="3794" dy="0" style="font-family:Helvetica; fill:black; stroke:black; 
+      font-size:118; text-anchor:middle ">0</text>
+      <line x1="1631" y1="3543" x2="1631" y2="3621" style="stroke:black; stroke-width:8"/>
+      <text x="1631" y="3794" dy="0" style="font-family:Helvetica; fill:black; stroke:black; 
+      font-size:118; text-anchor:middle ">2</text>
+      <line x1="2278" y1="3543" x2="2278" y2="3621" style="stroke:black; stroke-width:8"/>
+      <text x="2278" y="3794" dy="0" style="font-family:Helvetica; fill:black; stroke:black; 
+      font-size:118; text-anchor:middle ">4</text>
+      <line x1="2925" y1="3543" x2="2925" y2="3621" style="stroke:black; stroke-width:8"/>
+      <text x="2925" y="3794" dy="0" style="font-family:Helvetica; fill:black; stroke:black; 
+      font-size:118; text-anchor:middle ">6</text>
+      <line x1="3571" y1="3543" x2="3571" y2="3621" style="stroke:black; stroke-width:8"/>
+      <text x="3571" y="3794" dy="0" style="font-family:Helvetica; fill:black; stroke:black; 
+      font-size:118; text-anchor:middle ">8</text>
+      <line x1="4218" y1="3543" x2="4218" y2="3621" style="stroke:black; stroke-width:8"/>
+      <text x="4218" y="3794" dy="0" style="font-family:Helvetica; fill:black; stroke:black; 
+      font-size:118; text-anchor:middle ">10</text>
+      <line x1="4865" y1="3543" x2="4865" y2="3621" style="stroke:black; stroke-width:8"/>
+      <text x="4865" y="3794" dy="0" style="font-family:Helvetica; fill:black; stroke:black; 
+      font-size:118; text-anchor:middle ">12</text>
+      <line x1="5512" y1="3543" x2="5512" y2="3621" style="stroke:black; stroke-width:8"/>
+      <text x="5512" y="3794" dy="0" style="font-family:Helvetica; fill:black; stroke:black; 
+      font-size:118; text-anchor:middle ">14</text>
+      <line x1="984" y1="394" x2="984" y2="3543" style="stroke:black; stroke-width:8"/>
+      <text x="513" y="1969" dy="0" transform="rotate(-90,513,1969)" style="font-family:Helvetica;
+       fill:black; stroke:black; font-size:142; text-anchor:middle ">Time (s)</text>
+      <line x1="984" y1="3543" x2="905" y2="3543" style="stroke:black; stroke-width:8"/>
+      <text x="828" y="3582" dy="0" style="font-family:Helvetica; fill:black; stroke:black; 
+      font-size:118; text-anchor:end ">0.20</text>
+      <line x1="984" y1="2643" x2="905" y2="2643" style="stroke:black; stroke-width:8"/>
+      <text x="828" y="2682" dy="0" style="font-family:Helvetica; fill:black; stroke:black; 
+      font-size:118; text-anchor:end ">0.40</text>
+      <line x1="984" y1="1744" x2="905" y2="1744" style="stroke:black; stroke-width:8"/>
+      <text x="828" y="1783" dy="0" style="font-family:Helvetica; fill:black; stroke:black; 
+      font-size:118; text-anchor:end ">0.60</text>
+      <line x1="984" y1="844" x2="905" y2="844" style="stroke:black; stroke-width:8"/>
+      <text x="828" y="883" dy="0" style="font-family:Helvetica; fill:black; stroke:black; 
+      font-size:118; text-anchor:end ">0.80</text>
+      <line x1="984" y1="394" x2="5512" y2="394" style="stroke:black; stroke-width:8"/>
+      <line x1="5512" y1="394" x2="5512" y2="3543" style="stroke:black; stroke-width:8"/>
+      <polyline points="1308 624 1631 2445 2278 3081 3571 3370 4865 3377" style = "fill:none; stroke:black; 
+         stroke-width:16"/>
+      <circle cx="1308" cy="624" r="59" style="fill:white; stroke:black; stroke-width:8"/>
+      <circle cx="1631" cy="2445" r="59" style="fill:white; stroke:black; stroke-width:8"/>
+      <circle cx="2278" cy="3081" r="59" style="fill:white; stroke:black; stroke-width:8"/>
+      <circle cx="3571" cy="3370" r="59" style="fill:white; stroke:black; stroke-width:8"/>
+      <circle cx="4865" cy="3377" r="59" style="fill:white; stroke:black; stroke-width:8"/>
+</g>
+</svg>
