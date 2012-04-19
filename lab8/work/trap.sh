@@ -10,3 +10,5 @@ export OMP_NUM_THREADS=12
 mpiexec -np 1 ./trap
 export OMP_NUM_THREADS=6
 mpiexec -np 1 ./trap
+mpiexec -np 4 ./trap
+mpiexec -np 6 ./trap
