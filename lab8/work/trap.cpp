@@ -22,11 +22,11 @@ double trapezoidal(const double &a, const double &b, const  unsigned long int &n
 	const unsigned long int A = n%static_cast< unsigned long int>(num_ranks);
 	const unsigned long int B = num_ranks-A;
 
-	unsigned long int local_n = n/static_cast< unsigned long int>(num_ranks);
+	unsigned long int local_n = n/static_cast< unsigned long int>(num_ranks);//how many steps does this proc do?
 	if( rank < A)
 		local_n += 1;
 	
-	double step = (b - a)/static_cast<double>(n);
+	double step = (b - a)/static_cast<double>(n);//step size between each evaluation
 	
 	double start_n = local_n*rank;
 	if( rank >= A)
@@ -36,6 +36,7 @@ double trapezoidal(const double &a, const double &b, const  unsigned long int &n
 	double integral = (f(start_n) + f(start_n +local_n*step - step));
 	
 	unsigned long int i;
+	#pragma omp parallel for private(i)
 	for(i=1; i<local_n-1; ++i)
 	{
 		double x = start_n +i*step;
