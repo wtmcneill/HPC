@@ -82,6 +82,9 @@ int main(int argc, char * argv[])
   //Start Timer
   start = clock();
   
+  #pragma acc region
+  {
+  
   //Init inner cell values
   for(i=1; i<N-1; i++)
     for(j=1; j<N-1; j++)
@@ -101,6 +104,8 @@ int main(int argc, char * argv[])
 		  u[i][j]=w[i][j];
 
   } // end for iter:maxIters
+  
+  }//end of acc region pragma
   
   end = clock();
   elapsed = (end-start)/1000000.0;
